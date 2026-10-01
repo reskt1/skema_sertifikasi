@@ -24,7 +24,7 @@
             top: 0;
             width: 230px;
             height: 100vh;
-            background-color: #333;
+            background-color: #11a7ec;
             color: white;
             padding: 25px 15px;
         }
@@ -49,11 +49,11 @@
         }
 
         .menu a:hover {
-            background-color: #555;
+            background-color: #01eeff;
         }
 
         .menu .active {
-            background-color: #555;
+            background-color: #142192;
         }
 
         /* LOGOUT */
@@ -64,7 +64,7 @@
         .logout-button {
             width: 100%;
             padding: 12px;
-            background-color: #555;
+            background-color: #380808;
             color: white;
             border: none;
             border-radius: 5px;

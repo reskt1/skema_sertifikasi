@@ -205,15 +205,15 @@
     }
 
     .detail {
-        background-color: #555;
+        background-color: #ffa601;
     }
 
     .edit {
-        background-color: #777;
+        background-color: #01ccff;
     }
 
     .delete {
-        background-color: #333;
+        background-color:   #ff0101;
     }
 
     .table-container {
@@ -244,13 +244,13 @@
     }
 
     th {
-        background-color: #333;
+        background-color: #2b5cb8;
 
         color: white;
     }
 
     tr:hover {
-        background-color: #f5f5f5;
+        background-color: #6cdff3;
     }
 
     .actions {

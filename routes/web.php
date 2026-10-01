@@ -5,7 +5,7 @@ use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SkemaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login',[AuthController::class,'showLogin'])->name('login');
+Route::get('/',[AuthController::class,'showLogin'])->name('login');
 Route::post('/login',[AuthController::class,'login'])->name('login.process');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
