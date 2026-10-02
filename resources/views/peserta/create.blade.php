@@ -56,6 +56,29 @@
 
         </div>
 
+        {{-- NIK --}}
+
+        <div class="form-group">
+
+            <label for="nama">
+                NIK
+            </label>
+
+            <input
+                type="text"
+                id="nik"
+                name="nik"
+                value="{{ old('nik') }}"
+                required
+            >
+
+            @error('nik')
+                <div class="error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+        </div>
 
         {{-- NAMA --}}
 

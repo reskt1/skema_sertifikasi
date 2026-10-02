@@ -90,6 +90,7 @@
 
             <tr>
                 <th>No</th>
+                <th>NIK</th>
                 <th>Nama</th>
                 <th>Email</th>
                 <th>No. HP</th>
@@ -107,6 +108,10 @@
 
                     <td>
                         {{ $loop->iteration }}
+                    </td>
+
+                    <td>
+                        {{ $peserta->nik }}
                     </td>
 
                     <td>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pesertas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('skema_id')->constrained('skemas')->cascadeOndelete();
+            $table->string('nik', 16)->unique();
             $table->string('nama');
             $table->string('email');
             $table->string('no_hp');

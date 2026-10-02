@@ -10,6 +10,7 @@ class Peserta extends Model
 {
     protected $fillable =[
         'skema_id',
+        'nik',
         'nama',
         'email',
         'no_hp',

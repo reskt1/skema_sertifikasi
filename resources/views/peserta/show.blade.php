@@ -18,6 +18,18 @@
     <div class="detail-item">
 
         <span class="label">
+            NIK
+        </span>
+
+        <span>
+            {{ $peserta->nik }}
+        </span>
+
+    </div>
+
+    <div class="detail-item">
+
+        <span class="label">
             Nama
         </span>
 
