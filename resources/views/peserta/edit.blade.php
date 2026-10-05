@@ -67,8 +67,8 @@
 
             <input
                 type="text"
-                id="nama"
-                name="nama"
+                id="nik"
+                name="nik"
                 value="{{ old('nik', $peserta->nik) }}"
                 required
             >
