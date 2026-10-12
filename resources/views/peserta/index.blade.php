@@ -31,12 +31,14 @@
 
     </div>
 
+    @if(Auth::user()->role === 'admin')
     <a
         href="{{ route('peserta.create') }}"
         class="button"
     >
         + Tambah Peserta
     </a>
+    @endif
 
 </div>
 
@@ -139,6 +141,7 @@
                             Detail
                         </a>
 
+                         @if(Auth::user()->role === 'admin')
                         <a
                             href="{{ route('peserta.edit', $peserta) }}"
                             class="button edit"
@@ -163,7 +166,7 @@
                             >
                                 Hapus
                             </button>
-
+                            @endif
                         </form>
 
                     </td>
@@ -348,7 +351,7 @@
     }
 
     th {
-       background-color: #2b5cb8;;
+       background-color: #000000;;
 
         color: white;
     }

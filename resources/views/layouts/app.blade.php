@@ -24,7 +24,7 @@
             top: 0;
             width: 230px;
             height: 100vh;
-            background-color: #11a7ec;
+            background-color: #247bad;
             color: white;
             padding: 25px 15px;
         }
@@ -48,12 +48,10 @@
             border-radius: 5px;
         }
 
-        .menu a:hover {
-            background-color: #01eeff;
-        }
+
 
         .menu .active {
-            background-color: #142192;
+            background-color: #6597b8;
         }
 
         /* LOGOUT */
@@ -97,7 +95,7 @@
 
 <body> <!-- SIDEBAR -->
     <aside class="sidebar">
-        <h2>Admin</h2>
+        <h2>Skema Sertifikasi Peserta</h2>
         <nav class="menu"> <a href="{{ route('dashboard') }}"
                 class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"> Dashboard </a> <a
                 href="{{ route('skema.index') }}" class="{{ request()->routeIs('skema.*') ? 'active' : '' }}"> Data Skema

@@ -41,10 +41,10 @@ class PesertaController extends Controller
     {
         $validated = $request->validate([
             'skema_id' => 'required|exists:skemas,id',
-            'nik' => 'required|string|max:16',
+            'nik' => 'required|string|size:16',
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'no_hp' => 'required|string|max:20',
+            'no_hp' => 'required|string|max:13',
             'alamat' => 'required|string',
         ]);
 
@@ -73,10 +73,10 @@ class PesertaController extends Controller
     {
         $validated = $request->validate([
             'skema_id' => 'required|exists:skemas,id',
-            'nik' => 'required|string|max:16',
+            'nik' => 'required|string|size:16',
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'no_hp' => 'required|string|max:20',
+            'no_hp' => 'required|string|max:13',
             'alamat' => 'required|string',
         ]);
 

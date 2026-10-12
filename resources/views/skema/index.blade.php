@@ -29,12 +29,9 @@
         </p>
     </div>
 
-    <a
-        href="{{ route('skema.create') }}"
-        class="button"
-    >
-        + Tambah Skema
-    </a>
+    @if(Auth::user()->role === 'admin')
+    <a href="{{ route('skema.create') }}" class="button">+ Tambah Skema Baru</a>
+    @endif
 
 </div>
 
@@ -88,6 +85,7 @@
                             Detail
                         </a>
 
+                        @if(Auth::user()->role === 'admin')
                         <a
                             href="{{ route('skema.edit', $skema) }}"
                             class="button edit"
@@ -111,6 +109,7 @@
                             >
                                 Hapus
                             </button>
+                            @endif
 
                         </form>
 
@@ -244,7 +243,7 @@
     }
 
     th {
-        background-color: #2b5cb8;
+        background-color: #00040c;
 
         color: white;
     }

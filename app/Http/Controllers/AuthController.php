@@ -20,7 +20,6 @@ class AuthController extends Controller
             'password'=>'required',
         ]);
 
-      
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
@@ -41,4 +40,25 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
+    public function showRegister(){
+        return view('auth.register');
+    }
+    public function register(Request $request)
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+    ]);
+
+    \App\Models\User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+        'role' => 'user',
+    ]);
+
+
+    return redirect()->route('login')->with('success', 'Pendaftaran berhasil! Silakan masuk.');
+}
 }

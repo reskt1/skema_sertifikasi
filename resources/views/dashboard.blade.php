@@ -1,7 +1,7 @@
 @extends('layouts.app') @section('title', 'Dashboard') @section('content') <h1>Dashboard</h1> <!-- WELCOME -->
 <div class="welcome">
     <h2> Selamat Datang, {{ Auth::user()->name }} </h2>
-    <p> Berikut adalah ringkasan data sistem sertifikasi. </p>
+    <p> Berikut adalah ringkasan data skema sertifikasi. </p>
 </div> <!-- SUMMARY -->
 <div class="summary">
     <div class="summary-card">

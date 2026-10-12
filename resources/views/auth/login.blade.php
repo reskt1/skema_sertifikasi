@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 
 
-    <title>Login Administrator</title>
+    <title>Silahkan login</title>
 
     <style>
         body {
@@ -56,7 +57,7 @@
         .login-button {
             width: 100%;
             padding: 10px;
-            background-color: #008bfc;
+            background-color: #6597b8;
             color: white;
             border: none;
             border-radius: 5px;
@@ -74,6 +75,28 @@
             margin-bottom: 15px;
             border-radius: 5px;
         }
+        a{
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #008bfc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1{
+            cursor: default;
+        }
+        p{
+            cursor: default;
+        }
+        .auth-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -83,7 +106,7 @@
 
         <h1>Login</h1>
 
-        <p>Administrator Sistem</p>
+        <p>Silahkan Login Akun Anda</p>
 
         @if ($errors->any())
             <div class="error">
@@ -126,9 +149,20 @@
                 Login
             </button>
 
+            <div class="auth-links">
+                <a href="/">← Kembali</a>
+                <a href="{{ route('register') }}">Belum punya akun?</a>
+            </div>
+            <br>
+            @if (session('success'))
+                <div style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 15px; border-radius: 5px; text-align: center; font-size: 14px;">
+                    {{ session('success') }}
+                </div>
+            @endif
         </form>
 
     </div>
 
 </body>
 </html>
+
