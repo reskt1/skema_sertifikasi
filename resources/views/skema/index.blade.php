@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Data Skema</h1>
+<h1></h1>
 
 {{-- PESAN SUKSES --}}
 

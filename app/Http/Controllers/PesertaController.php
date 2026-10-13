@@ -44,7 +44,7 @@ class PesertaController extends Controller
             'nik' => 'required|string|size:16',
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'no_hp' => 'required|string|max:13',
+            'no_hp' => 'required|string|min:10 max:14',
             'alamat' => 'required|string',
         ]);
 
@@ -76,7 +76,7 @@ class PesertaController extends Controller
             'nik' => 'required|string|size:16',
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'no_hp' => 'required|string|max:13',
+            'no_hp' => 'required|string|min:10|max:14',
             'alamat' => 'required|string',
         ]);
 

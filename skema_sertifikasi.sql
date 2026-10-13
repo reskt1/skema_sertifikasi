@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2026 at 03:28 AM
+-- Generation Time: Oct 13, 2026 at 02:27 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -140,6 +140,7 @@ CREATE TABLE `password_reset_tokens` (
 CREATE TABLE `pesertas` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `skema_id` bigint(20) UNSIGNED NOT NULL,
+  `nik` varchar(16) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `no_hp` varchar(255) NOT NULL,
@@ -152,12 +153,11 @@ CREATE TABLE `pesertas` (
 -- Dumping data for table `pesertas`
 --
 
-INSERT INTO `pesertas` (`id`, `skema_id`, `nama`, `email`, `no_hp`, `alamat`, `created_at`, `updated_at`) VALUES
-(3, 4, 'Qoshid', 'qoshid@gmail.com', '08234584765', 'condet', '2026-09-29 21:24:18', '2026-09-29 21:24:18'),
-(4, 2, 'Raka', 'raka@gmail.com', '3247495435984', 'Jupiterrrrr', '2026-09-29 23:35:18', '2026-09-29 23:35:46'),
-(5, 8, 'Res', 'res@gmail.com', '083453478453', 'Kramatjati', '2026-09-30 21:02:09', '2026-09-30 21:02:09'),
-(6, 6, 'Reza', 'reza@gmail.com', '08234798472', 'cawang', '2026-09-30 21:02:37', '2026-09-30 21:02:37'),
-(7, 2, 'Haji', 'haji@gmail.com', '082937428734', 'jl haji', '2026-09-30 21:03:17', '2026-09-30 21:03:17');
+INSERT INTO `pesertas` (`id`, `skema_id`, `nik`, `nama`, `email`, `no_hp`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 1, '1234589385938593', 'Muhammad Resky Azzamy', 'resky@gmail.com', '085796633831', 'KramatJati', '2026-10-11 21:16:38', '2026-10-11 21:16:38'),
+(2, 1, '1982479759231244', 'Raka Prasetya', 'raka@gmail.com', '0832598235', 'Cawang', '2026-10-11 21:17:29', '2026-10-12 00:35:14'),
+(3, 1, '2383858350258385', 'Reze', 'reze@gmail.com', '08237948394', 'Jakarta', '2026-10-12 00:38:17', '2026-10-12 00:38:17'),
+(4, 2, '3858347538529153', 'Qoshid Albadrana', 'qoshid@gmail.com', '08293452985', 'condet', '2026-10-12 00:48:58', '2026-10-12 00:48:58');
 
 -- --------------------------------------------------------
 
@@ -179,9 +179,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fSs1SoMs1WFzY4PVmsBmZg0nNdf9TFQEzaDGcWE9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.140.0 Chrome/150.0.7871.250 Electron/43.7.3 Safari/537.36', 'eyJfdG9rZW4iOiJ0QjZLc1hzOVFGY1RUQnI0ZFRmYzZOemtWR2w2RFF1dUExS0xjUlNLIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9za2VtYSIsInJvdXRlIjoic2tlbWEuaW5kZXgifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MSwicGFzc3dvcmRfaGFzaF93ZWIiOiJiNzY2ZGI0ZTc1MzI3MzkwY2QwOWQyNTQzMTIwZTEyODczNzk4OGU5YzlhNGQ5MzNlZjBiOGFkNzgwYTYyYzk4In0=', 1790903249),
-('iANt98y9o8O4zd7UnWaUmnN14WOxWJje6UJQAKuQ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.139.1 Chrome/150.0.7871.250 Electron/43.6.0 Safari/537.36', 'eyJfdG9rZW4iOiJoeHRFOHp4QjJvdnBkZkVEdHJiYTd6SEpPd0tSR1RxMTZnTnExWjJrIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xOjgwMDAiLCJyb3V0ZSI6ImxvZ2luIn19', 1790828549),
-('TIIx0Jf6p1yqcyzkRxeVbAZPmUMoTVJbOFdo8O8L', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.139.1 Chrome/150.0.7871.250 Electron/43.6.0 Safari/537.36', 'eyJfdG9rZW4iOiJVYzBsQ0JldG1IWFB4UkQ0anpWbUZqckE4Sm9rYlZITnE2TWYyTno3IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9za2VtYSIsInJvdXRlIjoic2tlbWEuaW5kZXgifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MSwicGFzc3dvcmRfaGFzaF93ZWIiOiJiNzY2ZGI0ZTc1MzI3MzkwY2QwOWQyNTQzMTIwZTEyODczNzk4OGU5YzlhNGQ5MzNlZjBiOGFkNzgwYTYyYzk4In0=', 1790824407);
+('HUc07V1gtTaAaXJzITE0v4OMAKOBVjPFCT2zM7ew', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.140.0 Chrome/150.0.7871.250 Electron/43.7.3 Safari/537.36', 'eyJfdG9rZW4iOiJWbFZUcEtPYzNjQkh6TkQxdXcydzFZR1FseTZBbDYwMzBNVFNpbzcyIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xOjgwMDBcL2Rhc2hib2FyZCIsInJvdXRlIjoiZGFzaGJvYXJkIn0sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjoxLCJwYXNzd29yZF9oYXNoX3dlYiI6IjhkMWRhMjgwZTI1YmEzNmYxNzEzZWM2ZTU2OTM3N2UyMjJmZDI4OGU2YTk4MWZjYjcyZDZmMDVkMjQwZjljY2YifQ==', 1791791589);
 
 -- --------------------------------------------------------
 
@@ -203,12 +201,8 @@ CREATE TABLE `skemas` (
 --
 
 INSERT INTO `skemas` (`id`, `nama_skema`, `kode_skema`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(2, 'Senior Web Developer', 'SWD', 'Senior web developer tingkat smk', '2026-09-29 19:19:22', '2026-09-29 19:30:18'),
-(4, 'Data Analis', 'DT', 'Analisis data', '2026-09-29 19:30:37', '2026-09-29 19:30:37'),
-(5, 'Keterampilan Komunikasi', 'KKK', 'Keterampilan berkomunikasi', '2026-09-29 23:34:24', '2026-09-29 23:34:38'),
-(6, 'Kerangka Kualifikasi Nasional Indonesia', 'KKNI', 'Untuk Tingkat Nasional', '2026-09-30 21:00:18', '2026-09-30 21:00:18'),
-(7, 'Klaster', 'KLST', '-', '2026-09-30 21:00:56', '2026-09-30 21:00:56'),
-(8, 'Unit Kompetensi', 'UK', '-', '2026-09-30 21:01:20', '2026-09-30 21:01:20');
+(1, 'Front End Developer', 'KSM-01', 'Junior Developer', '2026-10-11 21:15:44', '2026-10-11 21:15:44'),
+(2, 'Back End Developer', 'KSM-02', 'Junior', '2026-10-12 00:41:22', '2026-10-12 00:41:22');
 
 -- --------------------------------------------------------
 
@@ -220,6 +214,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL DEFAULT 'user',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -231,8 +226,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@gmail.com', NULL, '$2y$12$QmKWJCd8NcYrp1keVEdHQuz9wLWG..2sf3nHBBeBYWfHQlizCVVmC', NULL, '2026-09-29 20:16:44', '2026-09-29 20:16:44');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'admin@gmail.com', 'admin', NULL, '$2y$12$uVm81GYwGM7l7.bhMz0JeOVBF078ztKQi1yoBDBmZ0gxWpQOgoqam', NULL, '2026-10-11 21:09:04', '2026-10-11 21:09:04'),
+(4, 'Raka', 'raka@gmail.com', 'user', NULL, '$2y$12$ay1wSmFM08f/6cxiZV7nuO9FoGAvDu9tLjcjl2nxNmE1eZXOBYaS6', NULL, '2026-10-11 21:34:11', '2026-10-11 21:34:11'),
+(5, 'Resky', 'resky@gmail.com', 'user', NULL, '$2y$12$U7SS0E2fs6UydQocAlVVOehCkBFJVaytw90QTi7G7NZMhA3f3YFwa', NULL, '2026-10-11 23:55:14', '2026-10-11 23:55:14');
 
 --
 -- Indexes for dumped tables
@@ -290,6 +287,7 @@ ALTER TABLE `password_reset_tokens`
 --
 ALTER TABLE `pesertas`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pesertas_nik_unique` (`nik`),
   ADD KEY `pesertas_skema_id_foreign` (`skema_id`);
 
 --
@@ -340,19 +338,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pesertas`
 --
 ALTER TABLE `pesertas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `skemas`
 --
 ALTER TABLE `skemas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

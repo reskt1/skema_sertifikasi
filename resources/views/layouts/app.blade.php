@@ -1,10 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> @yield('title', 'Sistem Sertifikasi') </title>
+
+    <title>@yield('title', 'Sistem Sertifikasi')</title>
+
     <style>
         * {
             box-sizing: border-box;
@@ -24,7 +27,7 @@
             top: 0;
             width: 230px;
             height: 100vh;
-            background-color: #247bad;
+            background-color: #6597b8;
             color: white;
             padding: 25px 15px;
         }
@@ -33,6 +36,7 @@
             text-align: center;
             margin-top: 0;
             margin-bottom: 30px;
+            font-size: 21px;
         }
 
         .menu {
@@ -46,65 +50,206 @@
             text-decoration: none;
             padding: 12px 15px;
             border-radius: 5px;
+            transition: background-color 0.2s;
         }
 
-
+        .menu a:hover {
+            background-color: #4384ad;
+        }
 
         .menu .active {
-            background-color: #6597b8;
+            background-color: #247bad;
         }
 
-        /* LOGOUT */
-        .logout-form {
-            margin-top: 20px;
+        /* AREA UTAMA */
+        .main-area {
+            margin-left: 230px;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            min-height: 76px;
+            background-color: white;
+            padding: 15px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .navbar-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .user-email {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .user-role {
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            padding: 4px 9px;
+            border-radius: 12px;
+            background-color: #e4f1fa;
+            color: #247bad;
+            font-size: 11px;
+            font-weight: bold;
         }
 
         .logout-button {
-            width: 100%;
-            padding: 12px;
+            padding: 10px 15px;
             background-color: #380808;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 13px;
         }
 
         .logout-button:hover {
-            background-color: #666;
+            background-color: #6b2020;
         }
 
         /* CONTENT */
         .content {
-            margin-left: 230px;
-            padding: 40px;
+            padding: 35px;
         }
 
         /* RESPONSIVE */
         @media (max-width: 700px) {
             .sidebar {
                 width: 180px;
+                padding: 20px 10px;
+            }
+
+            .sidebar h2 {
+                font-size: 17px;
+            }
+
+            .main-area {
+                margin-left: 180px;
+            }
+
+            .navbar {
+                padding: 15px;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .navbar-user {
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .user-info {
+                text-align: left;
+            }
+
+            .user-role {
+                margin-left: 0;
             }
 
             .content {
-                margin-left: 180px;
-                padding: 25px;
+                padding: 20px 15px;
             }
         }
-    </style> @stack('styles')
+    </style>
+
+    @stack('styles')
 </head>
 
-<body> <!-- SIDEBAR -->
+<body>
+
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <h2>Skema Sertifikasi Peserta</h2>
-        <nav class="menu"> <a href="{{ route('dashboard') }}"
-                class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"> Dashboard </a> <a
-                href="{{ route('skema.index') }}" class="{{ request()->routeIs('skema.*') ? 'active' : '' }}"> Data Skema
-            </a> <a href="{{ route('peserta.index') }}" class="{{ request()->routeIs('peserta.*') ? 'active' : '' }}">
-                Data Peserta </a> </nav>
-        <form action="{{ route('logout') }}" method="POST" class="logout-form"> @csrf <button type="submit"
-                class="logout-button"> Logout </button> </form>
-    </aside> <!-- CONTENT -->
-    <main class="content"> @yield('content') </main> @stack('scripts')
-</body>
 
+        <nav class="menu">
+            <a href="{{ route('dashboard') }}"
+                class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                Dashboard
+            </a>
+
+            <a href="{{ route('skema.index') }}"
+                class="{{ request()->routeIs('skema.*') ? 'active' : '' }}">
+                Data Skema
+            </a>
+
+            <a href="{{ route('peserta.index') }}"
+                class="{{ request()->routeIs('peserta.*') ? 'active' : '' }}">
+                Data Peserta
+            </a>
+        </nav>
+    </aside>
+
+    <!-- AREA UTAMA -->
+    <div class="main-area">
+
+        <!-- NAVBAR -->
+        <header class="navbar">
+            <div class="navbar-title">
+                 @yield('title', 'Dashboard')
+            </div>
+
+            <div class="navbar-user">
+                <div class="user-info">
+                    <span class="user-name">
+                        {{ auth()->user()->name ?? 'Pengguna' }}
+                    </span>
+
+                    <span class="user-email">
+                        {{ auth()->user()->email ?? '' }}
+                    </span>
+
+                    <span class="user-role">
+                        {{ auth()->user()->role ?? '' }}
+                    </span>
+                </div>
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+
+                    <button type="submit" class="logout-button">
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <main class="content">
+            @yield('content')
+        </main>
+
+    </div>
+
+    @stack('scripts')
+
+</body>
 </html>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Edit Skema</h1>
+<h1></h1>
 
 <div class="form-container">
 

@@ -1,129 +1,212 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Selamat Datang di Aplikasi Skema Sertifikasi</title>
+    <title>Selamat Datang | Skema Sertifikasi</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
             margin: 0;
-            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 50% 40%,
+                #ffffff 0%, #f4f8fb 65%, #e9f1f7 100%);
+            color: #0D1C42;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* DEKORASI SUDUT */
+        .decoration {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(
+                135deg, #6597b8, #247bad
+            );
+            opacity: 0.85;
+            border-radius: 45% 55% 70% 30%;
+            z-index: -1;
+        }
+
+        .decoration.top {
+            top: -190px;
+            left: -100px;
+            transform: rotate(25deg);
+        }
+
+        .decoration.bottom {
+            right: -120px;
+            bottom: -200px;
+            transform: rotate(45deg);
+        }
+
+        /* KONTEN UTAMA */
+        .welcome {
+            text-align: center;
+            padding: 35px 24px;
+            max-width: 650px;
+            width: 100%;
+            animation: fadeIn 0.8s ease;
+        }
+
+        /* IKON */
+        .icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-        }
-
-        .welcome-card {
-            max-width: 550px;
-            width: 90%;
-            text-align: center;
-            padding: 50px 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .icon-header {
-            font-size: 50px;
-            margin-bottom: 15px;
+            border-radius: 28px;
+            background-color: #e3f0f8;
+            color: #247bad;
+            font-size: 44px;
+            box-shadow: 0 10px 30px rgba(36, 123, 173, 0.10);
         }
 
         h1 {
-            font-size: 28px;
-            margin-top: 0;
-            margin-bottom: 12px;
-            color: #111;
+            margin: 0 0 14px;
+            font-size: clamp(32px, 6vw, 48px);
             font-weight: 700;
+            letter-spacing: -1.5px;
         }
 
-        p.description {
-            color: #666;
+        p {
+            margin: 0 0 32px;
+            color: #6597b8;
             font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 35px;
+            line-height: 1.7;
         }
 
-        .action-container {
+        /* TOMBOL */
+        .buttons {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            min-width: 145px;
+            padding: 13px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.25s ease;
         }
 
         .btn-login {
-            display: inline-block;
-            width: 100%;
-            max-width: 200px;
-            padding: 14px 0;
-            background-color: #247bad;
             color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.2s ease;
+            background: linear-gradient(
+                135deg, #247bad, #17638e
+            );
+            box-shadow: 0 6px 16px rgba(36, 123, 173, 0.18);
         }
 
         .btn-login:hover {
-            background-color: #555;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(36, 123, 173, 0.25);
         }
 
-        .register-text {
-            font-size: 14px;
-            color: #666;
-            margin: 0;
+        .btn-register {
+            color: #247bad;
+            border: 1px solid #247bad;
+            background-color: rgba(255, 255, 255, 0.6);
         }
 
-        .link-register {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid #333;
-            padding-bottom: 2px;
-            transition: color 0.2s ease, border-color 0.2s ease;
+        .btn-register:hover {
+            background-color: #e3f0f8;
+            transform: translateY(-3px);
         }
 
-        .link-register:hover {
-            color: #008bfc;
-            border-color: #008bfc;
+        .arrow {
+            margin-left: 7px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 480px) {
-            .welcome-card {
-                padding: 40px 20px;
+            .decoration {
+                width: 200px;
+                height: 200px;
+            }
+
+            .icon {
+                width: 75px;
+                height: 75px;
+                font-size: 36px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 260px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="welcome-card">
-        <div class="icon-header">📋</div>
-        <h1>Selamat Datang di Aplikasi<br>Skema Sertifikasi</h1>
-        <p class="description">Silakan masuk ke akun Anda untuk mengelola data skema, memantau ringkasan informasi, dan melihat data peserta sertifikasi.</p>
+    <div class="decoration top"></div>
+    <div class="decoration bottom"></div>
 
-        <div class="action-container">
-            @if (Route::has('login'))
-                @auth
+    <main class="welcome">
 
-                    <a href="{{ url('/dashboard') }}" class="btn-login">Ke Dashboard →</a>
-                @else
-                    <a href="{{ route('login') }}" class="btn-login">Masuk / Login</a>
-
-                    @if (Route::has('register'))
-                        <p class="register-text">
-                            Belum punya akun? <a href="{{ route('register') }}" class="link-register">Daftar Sekarang</a>
-                        </p>
-                    @endif
-                @endauth
-            @endif
+        <div class="icon" aria-hidden="true">
+            📋
         </div>
-    </div>
+
+        <h1>Selamat Datang</h1>
+
+        <p>
+            Sistem Informasi Skema Sertifikasi Peserta
+        </p>
+
+        <div class="buttons">
+            <a href="{{ route('login') }}" class="btn btn-login">
+                Login <span class="arrow">&rarr;</span>
+            </a>
+
+            <a href="{{ route('register') }}" class="btn btn-register">
+                Register <span class="arrow">&rarr;</span>
+            </a>
+        </div>
+
+    </main>
 
 </body>
 </html>

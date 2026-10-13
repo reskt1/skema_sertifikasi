@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background:
+                radial-gradient(circle at 50% 40%,
+                #ffffff 0%, #f4f8fb 65%, #e9f1f7 100%);
             margin: 0;
             min-height: 100vh;
             display: flex;

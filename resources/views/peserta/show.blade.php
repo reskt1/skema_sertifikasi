@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Detail Peserta</h1>
+<h1></h1>
 
 
 {{-- INFORMASI PESERTA --}}
@@ -104,14 +104,14 @@
     >
         ← Kembali
     </a>
-
+    @if(Auth::user()->role === 'admin')
     <a
         href="{{ route('peserta.edit', $peserta) }}"
         class="button edit"
     >
         Edit Peserta
     </a>
-
+    @endif
 </div>
 
 

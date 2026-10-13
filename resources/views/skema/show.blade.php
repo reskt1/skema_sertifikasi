@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Detail Skema</h1>
+<h1></h1>
 
 
 {{-- INFORMASI SKEMA --}}
@@ -117,14 +117,14 @@
     >
         ← Kembali
     </a>
-
+    @if(Auth::user()->role === 'admin')
     <a
         href="{{ route('skema.edit', $skema) }}"
         class="button edit"
     >
         Edit Skema
     </a>
-
+    @endif
 </div>
 
 

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Tambah Peserta</h1>
+<h1></h1>
 
 <div class="form-container">
 

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Data Peserta</h1>
+<h1></h1>
 
 {{-- PESAN SUKSES --}}
 
