@@ -11,7 +11,9 @@ class SkemaController extends Controller
 
     public function index()
     {
-        $skemas = Skema::with('pesertas')->latest()->get();
+        $skemas = Skema::with('pesertas')
+        ->orderBy('id','asc')
+        ->get();
 
         return view('skema.index', compact('skemas'));
     }

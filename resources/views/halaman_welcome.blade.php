@@ -32,13 +32,12 @@
             width: 300px;
             height: 300px;
             background: linear-gradient(
-                135deg, #6597b8, #247bad
+                135deg, #3cafcf, #1bbaf4
             );
             opacity: 0.85;
             border-radius: 45% 55% 70% 30%;
             z-index: -1;
         }
-
         .decoration.top {
             top: -190px;
             left: -100px;
@@ -193,7 +192,7 @@
         <h1>Selamat Datang</h1>
 
         <p>
-            Sistem Informasi Skema Sertifikasi Peserta
+            Di Aplikasi Sistem Informasi Skema Sertifikasi Peserta
         </p>
 
         <div class="buttons">

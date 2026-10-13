@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Peserta;
 use App\Models\Skema;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PesertaController extends Controller
 {
@@ -25,7 +26,9 @@ class PesertaController extends Controller
             });
         }
 
-        $pesertas = $query->latest()->get();
+        $pesertas = Peserta::with('skema')
+            ->orderBy('id', 'asc')
+            ->get();
 
         return view('peserta.index', compact('pesertas'));
     }
@@ -44,7 +47,7 @@ class PesertaController extends Controller
             'nik' => 'required|string|size:16',
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'no_hp' => 'required|string|min:10 max:14',
+            'no_hp' => 'required|string|min:10|max:15',
             'alamat' => 'required|string',
         ]);
 
@@ -72,12 +75,19 @@ class PesertaController extends Controller
     public function update(Request $request, Peserta $peserta)
     {
         $validated = $request->validate([
-            'skema_id' => 'required|exists:skemas,id',
-            'nik' => 'required|string|size:16',
+            'nik' => [
+            'required',
+            'digits:16',
+            Rule::unique('pesertas', 'nik')->ignore($peserta->id),
+        ],
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'no_hp' => 'required|string|min:10|max:14',
+            'no_hp' => 'required|string|min:10|max:15',
             'alamat' => 'required|string',
+        ], [
+            'nik.required' => 'NIK wajib diisi.',
+            'nik.digits' => 'NIK harus terdiri dari 16 digit.',
+            'nik.unique' => 'NIK ini sudah terdaftar. Silakan masukkan NIK lain.',
         ]);
 
         $peserta->update($validated);
