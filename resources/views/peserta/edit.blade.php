@@ -4,8 +4,6 @@
 
 @section('content')
 
-<h1></h1>
-
 <div class="form-container">
 
     <h2>Form Edit Peserta</h2>

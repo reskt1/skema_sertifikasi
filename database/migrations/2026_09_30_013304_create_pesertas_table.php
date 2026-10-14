@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('pesertas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('skema_id')->constrained('skemas')->cascadeOndelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('nik', 16)->unique();
             $table->string('nama');
             $table->string('email');
             $table->string('no_hp');
-            $table->text('alamat')->nullable;
+            $table->text('alamat')->nullable();
+            $table->enum('status_verifikasi', ['pending', 'diverifikasi', 'ditolak'])->default('pending');
             $table->timestamps();
         });
     }

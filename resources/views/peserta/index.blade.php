@@ -4,8 +4,6 @@
 
 @section('content')
 
-<h1></h1>
-
 {{-- PESAN SUKSES --}}
 
 @if (session('success'))
@@ -31,7 +29,7 @@
 
     </div>
 
-    @if(Auth::user()->role === 'admin')
+    @if(Auth::user()->role === 'peserta')
     <a
         href="{{ route('peserta.create') }}"
         class="button"
@@ -97,105 +95,73 @@
                 <th>Email</th>
                 <th>No. HP</th>
                 <th>Skema</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
 
         </thead>
 
         <tbody>
-
             @forelse ($pesertas as $peserta)
-
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $peserta->nik }}</td>
+                    <td>{{ $peserta->nama }}</td>
+                    <td>{{ $peserta->email }}</td>
+                    <td>{{ $peserta->no_hp }}</td>
+                    <td>{{ $peserta->skema->nama_skema ?? '-' }}</td>
 
+                    <!-- MENAMPILKAN TANDA VERIFIKASI -->
                     <td>
-                        {{ $loop->iteration }}
-                    </td>
-
-                    <td>
-                        {{ $peserta->nik }}
-                    </td>
-
-                    <td>
-                        {{ $peserta->nama }}
-                    </td>
-
-                    <td>
-                        {{ $peserta->email }}
-                    </td>
-
-                    <td>
-                        {{ $peserta->no_hp }}
-                    </td>
-
-                    <td>
-                        {{ $peserta->skema->nama_skema ?? '-' }}
+                        @if($peserta->status_verifikasi === 'pending')
+                            <span class="badge pending" style="background-color: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">PENDING</span>
+                        @elseif($peserta->status_verifikasi === 'diverifikasi')
+                            <span class="badge verified" style="background-color: #198754; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">DIVERIFIKASI</span>
+                        @else
+                            <span class="badge rejected" style="background-color: #dc3545; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">DITOLAK</span>
+                        @endif
                     </td>
 
                     <td class="actions">
-
-                        <a
-                            href="{{ route('peserta.show', $peserta) }}"
-                            class="button detail"
-                        >
+                        <!-- Semua Role bisa melihat Detail -->
+                        <a href="{{ route('peserta.show', $peserta) }}" class="button detail">
                             Detail
                         </a>
 
-                         @if(Auth::user()->role === 'admin')
-                        <a
-                            href="{{ route('peserta.edit', $peserta) }}"
-                            class="button edit"
-                        >
-                            Edit
-                        </a>
+                        @if(Auth::user()->role === 'admin')
+                            <!-- Jika admin yang melihat tabel, arahkan ke form edit admin -->
+                            <a href="{{ route('peserta.edit', $peserta) }}" class="button edit">Edit</a>
+                        @elseif($peserta->user_id === Auth::user()->id)
+                            <!-- Jika peserta melihat datanya sendiri, arahkan langsung ke profil edit kustomnya -->
+                            <a href="{{ route('peserta.profile.profile_edit') }}" class="button edit">Edit</a>
+                        @endif
 
-                        <form
-                            action="{{ route('peserta.destroy', $peserta) }}"
-                            method="POST"
-                            style="display: inline;"
-                        >
-
-                            @csrf
-
-                            @method('DELETE')
-
-                            <button
-                                type="submit"
-                                class="button delete"
-                                onclick="return confirm('Yakin ingin menghapus peserta ini?')"
-                            >
-                                Hapus
-                            </button>
-                            @endif
-                        </form>
-
+                        <!-- Hanya Admin yang bisa menghapus data -->
+                        @if(Auth::user()->role === 'admin')
+                            <form action="{{ route('peserta.destroy', $peserta) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button delete" onclick="return confirm('Yakin ingin menghapus peserta ini?')">
+                                    Hapus
+                                </button>
+                            </form>
+                        @endif
                     </td>
-
                 </tr>
-
             @empty
-
                 <tr>
-
-                    <td
-                        colspan="6"
-                        class="empty"
-                    >
+                    <!-- Diubah ke colspan="8" karena total kolom sekarang ada 8 -->
+                    <td colspan="8" class="empty">
                         @if (request('search'))
                             Peserta dengan kata pencarian tersebut tidak ditemukan.
                         @else
                             Belum ada data peserta.
                         @endif
                     </td>
-
                 </tr>
-
             @endforelse
-
         </tbody>
-
     </table>
-
 </div>
 
 
@@ -357,7 +323,7 @@
     }
 
     tr:hover {
-        background-color: #6cdff3;
+        background-color: #9ce5f2;
     }
 
     .actions {

@@ -26,7 +26,6 @@
             position: relative;
         }
 
-        /* DEKORASI SUDUT */
         .decoration {
             position: absolute;
             width: 300px;
@@ -50,7 +49,6 @@
             transform: rotate(45deg);
         }
 
-        /* KONTEN UTAMA */
         .welcome {
             text-align: center;
             padding: 35px 24px;
@@ -59,7 +57,6 @@
             animation: fadeIn 0.8s ease;
         }
 
-        /* IKON */
         .icon {
             width: 90px;
             height: 90px;
@@ -88,7 +85,6 @@
             line-height: 1.7;
         }
 
-        /* TOMBOL */
         .buttons {
             display: flex;
             justify-content: center;
@@ -192,7 +188,7 @@
         <h1>Selamat Datang</h1>
 
         <p>
-            Di Aplikasi Sistem Informasi Skema Sertifikasi Peserta
+            Di Aplikasi Skema Sertifikasi Peserta
         </p>
 
         <div class="buttons">

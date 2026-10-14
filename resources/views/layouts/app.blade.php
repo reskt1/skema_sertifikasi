@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -187,29 +186,54 @@
 <body>
 
     <!-- SIDEBAR -->
+    @auth
     <aside class="sidebar">
-        <h2>Skema Sertifikasi Peserta</h2>
+        <h2>Skema Sertifikasi</h2>
 
         <nav class="menu">
-            <a href="{{ route('dashboard') }}"
-                class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                Dashboard
-            </a>
+            <!-- ================= TAMPILAN SIDEBAR JIKA ADMIN ================= -->
+            @if(Auth::user()->role === 'admin')
 
-            <a href="{{ route('skema.index') }}"
-                class="{{ request()->routeIs('skema.*') ? 'active' : '' }}">
-                Data Skema
-            </a>
+                <a href="{{ route('dashboard') }}"
+                    class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    Dashboard Admin
+                </a>
 
-            <a href="{{ route('peserta.index') }}"
-                class="{{ request()->routeIs('peserta.*') ? 'active' : '' }}">
-                Data Peserta
-            </a>
+                <a href="{{ route('skema.index') }}"
+                    class="{{ request()->routeIs('skema.*') ? 'active' : '' }}">
+                    Data Skema
+                </a>
+
+                <a href="{{ route('peserta.index') }}"
+                    class="{{ request()->routeIs('peserta.*') ? 'active' : '' }}">
+                    Data Peserta
+                </a>
+
+            <!-- ================= TAMPILAN SIDEBAR JIKA PESERTA ================= -->
+            @else
+
+                <a href="{{ route('peserta.profile') }}"
+                    class="{{ request()->routeIs('peserta.profile') ? 'active' : '' }}">
+                    Profil Saya
+                </a>
+
+                <a href="{{ route('skema.index') }}"
+                    class="{{ request()->routeIs('skema.*') ? 'active' : '' }}">
+                    Data Skema
+                </a>
+
+                <a href="{{ route('peserta.index') }}"
+                    class="{{ request()->routeIs('peserta.index') || request()->routeIs('peserta.show') ? 'active' : '' }}">
+                    Data Peserta
+                </a>
+
+            @endif
         </nav>
     </aside>
+    @endauth
 
     <!-- AREA UTAMA -->
-    <div class="main-area">
+    <div class="main-area" style="{{ !auth()->check() ? 'margin-left: 0;' : '' }}">
 
         <!-- NAVBAR -->
         <header class="navbar">
@@ -218,27 +242,36 @@
             </div>
 
             <div class="navbar-user">
-                <div class="user-info">
-                    <span class="user-name">
-                        {{ auth()->user()->name ?? 'Pengguna' }}
-                    </span>
+                @auth
+                    <!-- Tampilan Info Pengguna jika Sudah Login -->
+                    <div class="user-info">
+                        <span class="user-name">
+                            {{ auth()->user()->name }}
+                        </span>
 
-                    <span class="user-email">
-                        {{ auth()->user()->email ?? '' }}
-                    </span>
+                        <span class="user-email">
+                            {{ auth()->user()->email }}
+                        </span>
 
-                    <span class="user-role">
-                        {{ auth()->user()->role ?? '' }}
-                    </span>
-                </div>
+                        <span class="user-role">
+                            {{ strtoupper(auth()->user()->role) }}
+                        </span>
+                    </div>
 
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-
-                    <button type="submit" class="logout-button">
-                        Logout
-                    </button>
-                </form>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="logout-button">
+                            Logout
+                        </button>
+                    </form>
+                @else
+                    <!-- Tampilan Tombol Navigasi jika Belum Login -->
+                    @if(request()->routeIs('register'))
+                        <a href="{{ route('login') }}" class="logout-button" style="background-color: #247bad; text-decoration: none;">Login</a>
+                    @else
+                        <a href="{{ route('register') }}" class="logout-button" style="background-color: #247bad; text-decoration: none;">Daftar</a>
+                    @endif
+                @endauth
             </div>
         </header>
 

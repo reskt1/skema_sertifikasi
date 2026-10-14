@@ -11,27 +11,29 @@ use Illuminate\Validation\Rule;
 class PesertaController extends Controller
 {
     public function index(Request $request)
-    {
-        $query =Peserta::with('skema');
-        if($request->filled('search')){
-            $search = $request->search;
+{
 
-            $query->where(function ($q) use ($search){
-                $q->where('nama','like', "%{$search}%")
-                ->orWhere('email','like',"%{$search}%")
-                ->orWhere('no_hp','like',"%{$search}%")
-                ->orWhereHas('skema', function($q) use ($search){
-                    $q->where('nama_skema','like',"%{$search}%");
-                });
-            });
-        }
+    $query = Peserta::with('skema');
 
-        $pesertas = Peserta::with('skema')
-            ->orderBy('id', 'asc')
-            ->get();
 
-        return view('peserta.index', compact('pesertas'));
+    if ($request->filled('search')) {
+        $search = $request->search;
+
+        $query->where(function ($q) use ($search) {
+            $q->where('nama', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%")
+              ->orWhere('no_hp', 'like', "%{$search}%")
+              ->orWhereHas('skema', function($q) use ($search) {
+                  $q->where('nama_skema', 'like', "%{$search}%");
+              });
+        });
     }
+
+
+    $pesertas = $query->orderBy('id', 'asc')->get();
+
+    return view('peserta.index', compact('pesertas'));
+}
 
     public function create()
     {
@@ -44,12 +46,17 @@ class PesertaController extends Controller
     {
         $validated = $request->validate([
             'skema_id' => 'required|exists:skemas,id',
-            'nik' => 'required|string|size:16',
+            'nik' => 'required|unique:pesertas,nik|digits:16',
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'no_hp' => 'required|string|min:10|max:15',
             'alamat' => 'required|string',
-        ]);
+        ], [
+
+        'nik.required' => 'NIK wajib diisi.',
+        'nik.digits' => 'NIK harus terdiri dari 16 digit.',
+        'nik.unique' => 'NIK ini sudah terdaftar. Silakan masukkan NIK lain.',
+    ]);
 
         Peserta::create($validated);
 

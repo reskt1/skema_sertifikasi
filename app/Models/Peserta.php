@@ -8,17 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Peserta extends Model
 {
-    protected $fillable =[
-        'skema_id',
-        'nik',
-        'nama',
-        'email',
-        'no_hp',
-        'alamat',
-    ];
+    protected $fillable = ['user_id', 'skema_id', 'nik', 'nama', 'email', 'no_hp', 'alamat', 'status_verifikasi'];
 
-    public function skema(): BelongsTo
+    public function user()
     {
-        return $this->belongsTo(Skema::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
+    public function skema()
+    {
+        return $this->belongsTo(Skema::class, 'skema_id');
+    }
+
 }

@@ -4,8 +4,6 @@
 
 @section('content')
 
-<h1></h1>
-
 {{-- PESAN SUKSES --}}
 
 @if (session('success'))
@@ -249,7 +247,7 @@
     }
 
     tr:hover {
-        background-color: #6cdff3;
+        background-color: #c4c6c7;
     }
 
     .actions {
